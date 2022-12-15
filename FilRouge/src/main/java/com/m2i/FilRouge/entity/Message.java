@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "messages")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,10 +12,14 @@ public class Message {
     private String content;
     private Date createdAt;
     private Date updatedAt;
+
     @ManyToOne
-    private Long userId;
+    @JoinColumn(name = "id")
+    private User user;
+
     @ManyToOne
-    private Long channelId;
+    @JoinColumn(name = "id")
+    private Channel channel;
 
     public Long getId() {
         return id;

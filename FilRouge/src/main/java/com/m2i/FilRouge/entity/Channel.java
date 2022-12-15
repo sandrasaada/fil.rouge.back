@@ -19,6 +19,9 @@ public class Channel {
     @OneToMany(targetEntity = Message.class, mappedBy = "channel")
     private List<Message> messages;
 
+    public Channel() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,5 +60,25 @@ public class Channel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "Channel{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", messages=" + messages +
+                '}';
     }
 }

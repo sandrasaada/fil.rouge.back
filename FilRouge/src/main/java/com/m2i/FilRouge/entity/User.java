@@ -17,6 +17,9 @@ public class User {
     @OneToMany(targetEntity = Message.class, mappedBy = "user")
     private List<Message> messages;
 
+    public User() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -47,5 +50,24 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", messages=" + messages +
+                '}';
     }
 }

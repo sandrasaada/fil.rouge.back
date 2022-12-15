@@ -14,12 +14,15 @@ public class Message {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+//    @JoinColumn(name = "id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+//    @JoinColumn(name = "id")
     private Channel channel;
+
+    public Message() {
+    }
 
     public Long getId() {
         return id;
@@ -51,5 +54,17 @@ public class Message {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", user=" + user +
+                ", channel=" + channel +
+                '}';
     }
 }

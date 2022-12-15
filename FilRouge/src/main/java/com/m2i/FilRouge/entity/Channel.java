@@ -1,5 +1,8 @@
 package com.m2i.FilRouge.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +16,10 @@ public class Channel {
 
     private String description;
     private String name;
+
+    @CreationTimestamp
     private Date createdAt;
+    @UpdateTimestamp
     private Date updatedAt;
 
     @OneToMany(targetEntity = Message.class, mappedBy = "channel")

@@ -5,8 +5,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "channels")
@@ -25,6 +25,10 @@ public class Channel {
 
     @OneToMany(targetEntity = Message.class, mappedBy = "channel")
     private List<Message> messages;
+
+    @ManyToMany
+    @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    private Set<User> users;
 
     public Channel() {
     }
@@ -75,6 +79,14 @@ public class Channel {
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override

@@ -1,19 +1,20 @@
 package com.m2i.FilRouge.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -32,9 +33,28 @@ public class Channel {
     private LocalDateTime updatedAt;
 
     @OneToMany(targetEntity = Message.class, mappedBy = "channel")
+    @ToString.Exclude
     private List<Message> messages;
 
     @ManyToMany
     @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @ToString.Exclude
     private Set<User> users;
+
+    public void channelUsers(User user){
+        users.add(user);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Channel channel = (Channel) o;
+        return id != null && Objects.equals(id, channel.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FilRougeApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(FilRougeApplication.class, args);
 	}
 

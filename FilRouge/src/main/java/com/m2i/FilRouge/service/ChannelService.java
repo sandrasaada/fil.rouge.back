@@ -17,6 +17,14 @@ public class ChannelService {
         return repo.findAll();
     }
 
+    public Channel setGeneralChannel(Long id, String name, String description){
+        id = 1L;
+        name = "Général";
+        description = "Canal général";
+        Channel general = new Channel(id, name, description);
+        return repo.save(general);
+    }
+
     public Optional<Channel> getChannelById(Long id){
         return repo.findById(id);
     }
@@ -27,14 +35,14 @@ public class ChannelService {
 
     public void deleteChannel(Long id){
         repo.findById(id).orElse(null);
-        if(id != 1){
+        if(id != 1L){
             repo.deleteById(id);
         }
     }
 
     public Channel updateChannel(Channel channel){
         Channel newChannel = repo.findById(channel.getId()).orElse(null);
-        if(newChannel != null && channel.getId() != 1){
+        if(newChannel != null && channel.getId() != 1L){
             newChannel.setName(channel.getName());
             newChannel.setDescription(channel.getDescription());
             repo.save(newChannel);

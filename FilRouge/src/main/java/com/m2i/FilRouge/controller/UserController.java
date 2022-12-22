@@ -1,5 +1,6 @@
 package com.m2i.FilRouge.controller;
 
+import com.m2i.FilRouge.entity.Channel;
 import com.m2i.FilRouge.entity.User;
 import com.m2i.FilRouge.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -21,6 +23,16 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<User> getById(@PathVariable Long id){
         return service.getUserById(id);
+    }
+
+    @GetMapping("/{id}/channels")
+    public List<Channel> getUserChannels(@PathVariable Long id){
+        return service.getUserChannels(id);
+    }
+
+    @PostMapping("/{id}/channels")
+    public User addChannelsToUser(@PathVariable Long id, @RequestBody List<Long> chanIds){
+        return service.addChannelsToUser(id, chanIds);
     }
 
     @PostMapping("")

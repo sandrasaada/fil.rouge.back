@@ -1,7 +1,9 @@
 package com.m2i.FilRouge.service;
 
 import com.m2i.FilRouge.entity.Channel;
+import com.m2i.FilRouge.entity.User;
 import com.m2i.FilRouge.repository.ChannelRepository;
+import com.m2i.FilRouge.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.Optional;
 public class ChannelService {
     @Autowired
     private ChannelRepository repo;
+    @Autowired
+    private UserRepository userRepo;
 
     public List<Channel> getAllChannels(){
         return repo.findAll();
@@ -29,6 +33,17 @@ public class ChannelService {
     }
 
     public Channel addChannel(Channel channel){
+        return repo.save(channel);
+    }
+
+    public List<User> getChannelUsers(Long id){
+        return repo.findById(id).get().getUsers();
+    }
+
+    public Channel addUsersToChannel(Long id, List<Long> userIds){
+        Channel channel = repo.findById(id).get();
+        List<User> users = userRepo.findAllById(userIds);
+        channel.getUsers().addAll(users);
         return repo.save(channel);
     }
 

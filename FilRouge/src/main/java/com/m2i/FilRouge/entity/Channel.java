@@ -38,8 +38,7 @@ public class Channel {
     @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users;
 
-    public Channel(Long id, String name, String description) {
-        this.id = id;
+    public Channel(String name, String description) {
         this.name = name;
         this.description = description;
     }

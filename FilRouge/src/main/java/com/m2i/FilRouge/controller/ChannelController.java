@@ -27,6 +27,10 @@ public class ChannelController {
     public Channel post(@RequestBody Channel channel){
         return service.addChannel(channel);
     }
+    @PostMapping("/general")
+    public Channel setGeneralChannel(){
+        return service.setGeneralChannel();
+    }
 
     @PutMapping("/edit/{id}")
     public Channel update(@PathVariable Long id, @RequestBody Channel channel){

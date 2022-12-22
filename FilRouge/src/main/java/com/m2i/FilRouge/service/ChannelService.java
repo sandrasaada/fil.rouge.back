@@ -17,11 +17,10 @@ public class ChannelService {
         return repo.findAll();
     }
 
-    public Channel setGeneralChannel(Long id, String name, String description){
-        id = 1L;
-        name = "Général";
-        description = "Canal général";
-        Channel general = new Channel(id, name, description);
+    public Channel setGeneralChannel(){
+        String name = "Général";
+        String description = "Canal général";
+        Channel general = new Channel(name, description);
         return repo.save(general);
     }
 
@@ -34,19 +33,28 @@ public class ChannelService {
     }
 
     public void deleteChannel(Long id){
-        repo.findById(id).orElse(null);
-        if(id != 1L){
-            repo.deleteById(id);
+        try{
+            Channel channel = repo.findById(id).get();
+            if(!channel.getName().equals("Général")){
+                repo.deleteById(id);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     public Channel updateChannel(Channel channel){
-        Channel newChannel = repo.findById(channel.getId()).orElse(null);
-        if(newChannel != null && channel.getId() != 1L){
-            newChannel.setName(channel.getName());
-            newChannel.setDescription(channel.getDescription());
-            repo.save(newChannel);
+        try{
+            Channel newChannel = repo.findById(channel.getId()).orElse(null);
+            if(newChannel != null && !channel.getName().equals("Général")){
+                newChannel.setName(channel.getName());
+                newChannel.setDescription(channel.getDescription());
+                repo.save(newChannel);
+            }
+            return newChannel;
+        }catch (Exception e){
+            e.printStackTrace();
+            return channel;
         }
-        return newChannel;
     }
 }

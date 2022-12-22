@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ChannelService {
@@ -30,7 +29,7 @@ public class ChannelService {
         return repo.save(channel);
     }
 
-    public Set<User> getChannelUsers(Long id){
+    public List<User> getChannelUsers(Long id){
         return repo.findById(id).get().getUsers();
     }
 

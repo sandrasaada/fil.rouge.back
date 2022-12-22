@@ -17,8 +17,6 @@ import java.util.Set;
 public class ChannelController {
     @Autowired
     private ChannelService cService;
-    @Autowired
-    private UserService uService;
 
     @GetMapping("")
     public List<Channel> getAll(){
@@ -31,7 +29,7 @@ public class ChannelController {
     }
 
     @GetMapping("/{id}/users")
-    public Set<User> getChannelUsers(@PathVariable Long id){
+    public List<User> getChannelUsers(@PathVariable Long id){
         return cService.getChannelUsers(id);
     }
 

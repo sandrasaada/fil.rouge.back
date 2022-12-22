@@ -1,12 +1,8 @@
 package com.m2i.FilRouge.entity;
 
-import lombok.*;
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -14,18 +10,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String email;
     private String username;
     private String password;
-
     @OneToMany(targetEntity = Message.class, mappedBy = "user")
-    @ToString.Exclude
     private List<Message> messages;
-
     @ManyToMany
-    @ToString.Exclude
-    private Set<Channel> channels;
+    private List<Channel> channels = new ArrayList<>();
 
     public void userChannels(Channel channel){
         channels.add(channel);
@@ -36,16 +27,15 @@ public class User {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User user = (User) o;
-        return id != null && Objects.equals(id, user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", messages=" + messages +
+                ", channels=" + channels +
+                '}';
     }
 
     public Long getId() {
@@ -88,11 +78,11 @@ public class User {
         this.messages = messages;
     }
 
-    public Set<Channel> getChannels() {
+    public List<Channel> getChannels() {
         return channels;
     }
 
-    public void setChannels(Set<Channel> channels) {
+    public void setChannels(List<Channel> channels) {
         this.channels = channels;
     }
 }

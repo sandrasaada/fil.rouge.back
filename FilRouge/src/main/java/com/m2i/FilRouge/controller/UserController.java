@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -28,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/channels")
-    public Set<Channel> getUserChannels(@PathVariable Long id){
+    public List<Channel> getUserChannels(@PathVariable Long id){
         return service.getUserChannels(id);
     }
 

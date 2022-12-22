@@ -4,12 +4,11 @@ import com.m2i.FilRouge.entity.Channel;
 import com.m2i.FilRouge.entity.User;
 import com.m2i.FilRouge.repository.ChannelRepository;
 import com.m2i.FilRouge.repository.UserRepository;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.SecurityContextProvider;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -42,7 +41,7 @@ public class UserService {
         repo.deleteById(id);
     }
 
-    public Set<Channel> getUserChannels(Long id){
+    public List<Channel> getUserChannels(Long id){
         return repo.findById(id).get().getChannels();
     }
 

@@ -37,4 +37,14 @@ public class Channel {
     @ManyToMany
     @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users;
+
+    public Channel(Long id, String description, String name){
+        this.id = 1L;
+        this.description = "Canal Général";
+        this.name = "Général";
+
+        id = this.id;
+        description = this.description;
+        name = this.name;
+    }
 }

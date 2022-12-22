@@ -27,12 +27,14 @@ public class ChannelService {
 
     public void deleteChannel(Long id){
         repo.findById(id).orElse(null);
-        repo.deleteById(id);
+        if(id != 1){
+            repo.deleteById(id);
+        }
     }
 
     public Channel updateChannel(Channel channel){
         Channel newChannel = repo.findById(channel.getId()).orElse(null);
-        if(newChannel != null){
+        if(newChannel != null && channel.getId() != 1){
             newChannel.setName(channel.getName());
             newChannel.setDescription(channel.getDescription());
             repo.save(newChannel);

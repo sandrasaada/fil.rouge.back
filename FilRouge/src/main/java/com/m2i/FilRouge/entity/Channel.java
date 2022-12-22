@@ -27,6 +27,9 @@ public class Channel {
     @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private List<User> users = new ArrayList<>();
 
+    public Channel() {
+    }
+
     public Channel(String name, String description) {
         this.name = name;
         this.description = description;

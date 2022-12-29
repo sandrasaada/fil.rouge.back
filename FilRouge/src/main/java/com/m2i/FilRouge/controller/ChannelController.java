@@ -31,8 +31,8 @@ public class ChannelController {
     }
 
     @PostMapping("/{id}/users")
-    public Channel addUsersToChannel(@PathVariable Long id, @RequestBody List<Long> userIds){
-        return service.addUsersToChannel(id, userIds);
+    public Channel addUsers(@PathVariable Long id, @RequestBody List<Long> userIds){
+        return service.addUsers(id, userIds);
     }
 
     @PostMapping("")

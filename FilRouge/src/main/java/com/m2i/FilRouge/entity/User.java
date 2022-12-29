@@ -15,16 +15,8 @@ public class User {
     private String password;
     @OneToMany(targetEntity = Message.class, mappedBy = "user")
     private List<Message> messages;
-    @ManyToMany
+    @ManyToMany(mappedBy = "users")
     private List<Channel> channels = new ArrayList<>();
-
-    public void userChannels(Channel channel){
-        channels.add(channel);
-    }
-
-    public void userMessages(Message message){
-        messages.add(message);
-    }
 
     @Override
     public String toString() {

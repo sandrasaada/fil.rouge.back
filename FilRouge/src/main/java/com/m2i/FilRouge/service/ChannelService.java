@@ -40,10 +40,10 @@ public class ChannelService {
         return repo.findById(id).get().getUsers();
     }
 
-    public Channel addUsersToChannel(Long id, List<Long> userIds){
+    public Channel addUsers(Long id, List<Long> userIds){
         Channel channel = repo.findById(id).get();
         List<User> users = userRepo.findAllById(userIds);
-        channel.getUsers().addAll(users);
+        channel.setUsers(users);
         return repo.save(channel);
     }
 

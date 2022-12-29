@@ -35,10 +35,6 @@ public class Channel {
         this.description = description;
     }
 
-    public void channelUsers(User user){
-        users.add(user);
-    }
-
     @Override
     public String toString() {
         return "Channel{" +

@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/messages")
+@CrossOrigin
 public class MessageController {
     @Autowired
     private MessageService service;

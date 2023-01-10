@@ -1,6 +1,6 @@
 package com.m2i.FilRouge.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ public class User {
     private String username;
     private String password;
     @OneToMany(targetEntity = Message.class, mappedBy = "user")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Message> messages;
     @ManyToMany(mappedBy = "users")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Channel> channels = new ArrayList<>();
 
     @Override

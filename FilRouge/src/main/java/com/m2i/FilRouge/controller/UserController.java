@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
-@RequestMapping("/users")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping(value = "/users")
 public class UserController {
     @Autowired
     private UserService service;

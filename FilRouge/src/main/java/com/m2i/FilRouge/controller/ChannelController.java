@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
-@RequestMapping("/channels")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping(value = "/channels")
 public class ChannelController {
     @Autowired
     private ChannelService service;

@@ -1,5 +1,6 @@
 package com.m2i.FilRouge.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -22,9 +23,11 @@ public class Channel {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     @OneToMany(targetEntity = Message.class, mappedBy = "channel", orphanRemoval = true)
+    @JsonManagedReference
     private List<Message> messages;
     @ManyToMany
     @JoinTable(name = "channels_users", joinColumns = { @JoinColumn(name = "channel_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @JsonManagedReference
     private List<User> users = new ArrayList<>();
 
     public Channel() {

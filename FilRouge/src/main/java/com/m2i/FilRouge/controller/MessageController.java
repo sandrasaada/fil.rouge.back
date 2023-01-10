@@ -25,11 +25,6 @@ public class MessageController {
         return service.getMessageById(id);
     }
 
-    @PostMapping("")
-    public Message post(@RequestBody Message message){
-        return service.addMessage(message);
-    }
-
     @PutMapping("/edit/{id}")
     public Message update(@PathVariable Long id, @RequestBody Message message){
         message.setId(id);

@@ -1,5 +1,6 @@
 package com.m2i.FilRouge.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,9 +20,11 @@ public class Message {
     private LocalDateTime updatedAt;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
     @ManyToOne
     @JoinColumn(name = "channel_id")
+    @JsonBackReference
     private Channel channel;
 
     @Override

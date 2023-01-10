@@ -1,8 +1,10 @@
 package com.m2i.FilRouge.controller;
 
 import com.m2i.FilRouge.entity.Channel;
+import com.m2i.FilRouge.entity.Message;
 import com.m2i.FilRouge.entity.User;
 import com.m2i.FilRouge.service.ChannelService;
+import com.m2i.FilRouge.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +17,25 @@ import java.util.Optional;
 public class ChannelController {
     @Autowired
     private ChannelService service;
+    @Autowired
+    private MessageService mService;
 
     @GetMapping("")
     public List<Channel> getAll(){
         return service.getAllChannels();
+    }
+
+    @GetMapping("/{id}/messages")
+    public List<Message> getByChannel(@PathVariable Long id){
+        Channel channel = service.getChannelById(id).get();
+        return mService.getMessagesByChannel(channel);
+    }
+
+    @PostMapping("/{id}")
+    public Message post(@RequestBody Message message, @PathVariable Long id){
+        Channel channel = service.getChannelById(id).get();
+        message.setChannel(channel);
+        return mService.addMessage(message);
     }
 
     @GetMapping("/{id}")

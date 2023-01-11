@@ -13,32 +13,19 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping(value = "/channels")
+@RequestMapping(value = "")
 public class ChannelController {
     @Autowired
     private ChannelService service;
     @Autowired
     private MessageService mService;
 
-    @GetMapping("")
+    @GetMapping("/channels")
     public List<Channel> getAll(){
         return service.getAllChannels();
     }
 
-    @GetMapping("/{id}/messages")
-    public List<Message> getByChannel(@PathVariable Long id){
-        Channel channel = service.getChannelById(id).get();
-        return mService.getMessagesByChannel(channel);
-    }
-
-    @PostMapping("/{id}")
-    public Message post(@RequestBody Message message, @PathVariable Long id){
-        Channel channel = service.getChannelById(id).get();
-        message.setChannel(channel);
-        return mService.addMessage(message);
-    }
-
-    @GetMapping("/{id}")
+    @GetMapping("channels/{id}")
     public Optional<Channel> getById(@PathVariable Long id){
         return service.getChannelById(id);
     }
@@ -53,7 +40,7 @@ public class ChannelController {
         return service.addUsers(id, userIds);
     }
 
-    @PostMapping("")
+    @PostMapping("/channels")
     public Channel post(@RequestBody Channel channel){
         return service.addChannel(channel);
     }
@@ -62,13 +49,13 @@ public class ChannelController {
         return service.setGeneralChannel();
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("channels/edit/{id}")
     public Channel update(@PathVariable Long id, @RequestBody Channel channel){
         channel.setId(id);
         return service.updateChannel(channel);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("channels/delete/{id}")
     public void delete(@PathVariable Long id){
         service.deleteChannel(id);
     }

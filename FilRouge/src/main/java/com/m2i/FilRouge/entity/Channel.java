@@ -1,6 +1,7 @@
 package com.m2i.FilRouge.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,8 +21,10 @@ public class Channel {
     private String description;
     private String name;
     @CreationTimestamp
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;
     @UpdateTimestamp
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
     private LocalDateTime updatedAt;
     @OneToMany(targetEntity = Message.class, mappedBy = "channel", orphanRemoval = true)
     @JsonIgnore

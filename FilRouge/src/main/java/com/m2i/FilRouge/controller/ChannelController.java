@@ -30,15 +30,15 @@ public class ChannelController {
         return service.getChannelById(id);
     }
 
-    @GetMapping("/{id}/users")
-    public List<User> getChannelUsers(@PathVariable Long id){
-        return service.getChannelUsers(id);
-    }
-
-    @PostMapping("/{id}/users")
-    public Channel addUsers(@PathVariable Long id, @RequestBody List<Long> userIds){
-        return service.addUsers(id, userIds);
-    }
+//    @GetMapping("/{id}/users")
+//    public List<User> getChannelUsers(@PathVariable Long id){
+//        return service.getChannelUsers(id);
+//    }
+//
+//    @PostMapping("/{id}/users")
+//    public Channel addUsers(@PathVariable Long id, @RequestBody List<Long> userIds){
+//        return service.addUsers(id, userIds);
+//    }
 
     @PostMapping("/channels")
     public Channel post(@RequestBody Channel channel){
